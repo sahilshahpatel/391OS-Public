@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        <title>391OS</title>
+
+        <script src="lib/v86/build/libv86.js"></script>
+        <script>
+            const V86_PATH = "lib/v86/";
+            window.addEventListener("load", function(){
+                window.emulator = new V86Starter({
+                    wasm_path: V86_PATH + "build/v86.wasm",
+                    bios: {url: V86_PATH + "bios/seabios.bin"},
+                    vga_bios: {url: V86_PATH + "bios/vgabios.bin"},
+                    memory_size: 256 * 1024 * 1024,
+                    vga_memory_size: 8 * 1024 * 1024,
+                    screen_container: document.getElementById("vm_container"),
+                    hda: {url: "./mp3.img"},
+                    autostart: true,
+                });
+            });
+        </script>
+    </head>
+
+    <body>
+        <div style="display: flex; justify-content: center;">
+            <div id="vm_container">
+                <div id="vm_text_mode" style="white-space: pre; font: 14px monospace; line-height: 14px;"></div>
+                <canvas id="vm_graphics_mode" style="display: none"></canvas> <!-- No graphics mode yet -->
+            </div>
+        </div>
+
+        <div style="width: 75%; margin: auto;">
+            <h2>Contributors</h2>
+            <p>
+                Sahil Patel, Mehul Duggar, Freddy Zhang, and Ayberk Yaraneri
+            </p>
+            <p>
+                Thank you to <a href="https://github.com/copy/v86">v86</a> for enabling us to run this in the browser.
+            </p>
+
+            <h2>Disclaimer</h2>
+            <p>
+                This web version of our 391OS is likely to run slower than it would in QEMU because of 
+                the browser environment. Additionally, we have not necessarily verified that all features 
+                work properly in this environment (as opposed to QEMU where we developed).
+            </p>
+            <p>
+                Please note that the source code of our operating system is unavailable for academic integrity reasons.
+            </p>
+        </div>
+    </body>
+</html>
